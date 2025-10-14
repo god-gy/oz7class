@@ -7,7 +7,7 @@ import json
 import unicodedata
 
 def align_korean(text, width):
-    """한글 포함 문자열을 일정 폭으로 정렬"""
+    """한글 포함 문자열을 일정 폭으로 정렬하는 함수"""
     count = 0
     for ch in text:
         if unicodedata.east_asian_width(ch) in ['F', 'W']:
@@ -46,6 +46,25 @@ except FileNotFoundError:
         '환타': 0
     }
 
+def show_acailable_drink(current_stock):
+    '''현재 보유한 음료 목록 보기 함수'''
+    available = [drk for drk, qty in current_stock.items() if qty > 0]
+    print("현재 보유한 음료:")
+    for drk in available:
+        print("-", drk)
+
+def show_stock_status(cr_stock, cr_price, cr_sales):
+    '''재고현황 보기 함수'''
+    print("\n🥤 재고 현황")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    print(f"{'음료명':<8}{'재고':<6}{'가격':<6}{'매출':<10}")
+    print("───────────────────────────────────────")
+    for cr_drink in cr_stock:
+        cr_con = "🧊" if cr_stock[cr_drink] > 0 else "❌"
+        name = align_korean(cr_drink, 10)
+        print(f"{name}{cr_con} {cr_stock[cr_drink]:<6}{cr_price[cr_drink]:<10}{cr_sales[cr_drink]:<10}")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
 # ==============================
 # 🔹 메인 루프 시작
 # ==============================
@@ -64,7 +83,9 @@ while True:
 
     if choice == '1':
         print("\n--- 음료 구매 ---")
-        drink = input("구매할 음료를 입력하세요 (콜라 / 사이다 / 환타): ")
+        #print(f'현재 음료 종류 : {list(stock.keys())}')
+        show_acailable_drink(stock)
+        drink = input("구매할 음료를 입력하세요: ")
 
         if drink in stock:
             quantity = int(input("구매할 수량을 입력하세요: "))
@@ -86,15 +107,8 @@ while True:
 
     # gpt로 이쁘게 꾸며봄
     elif choice == '2' :
-        print("\n🥤 재고 현황 (현재)")
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"{'음료명':<8}{'재고':<6}{'가격':<6}{'매출':<10}")
-        print("───────────────────────────────────────")
 
-        for drink in stock:
-            ICON = "🧊" if stock[drink] > 0 else "❌"
-            name = align_korean(drink, 10)  # 한글 폭 고려
-            print(f"{name}{ICON} {stock[drink]:<6}{price[drink]:<10}{sales[drink]:<10}")
+        show_stock_status(stock, price, sales)
 
         print("───────────────────────────────────────")
         print(f"💰 총 매출: {sum(sales.values())}원")
@@ -109,7 +123,8 @@ while True:
         commend = input("진행할 작업을 입력하세요: ")
 
         if commend == '추가':
-            drink = input("추가할 음료를 입력하세요 (콜라 / 사이다 / 환타): ")
+            show_acailable_drink(stock)
+            drink = input("추가할 음료를 입력하세요: ")
             quantity = int(input("추가할 수량을 입력하세요: "))
 
             if drink in stock:
@@ -121,6 +136,7 @@ while True:
             print(f"\n ✅ {drink} {quantity}개 추가 완료 되었습니다.")
 
         elif commend == '삭제':
+            show_acailable_drink(stock)
             drink = input("삭제할 음료를 입력하세요: ")
 
             if drink in stock:
@@ -135,17 +151,7 @@ while True:
         else:
             print("\n ❌ 실행할 수 없는 명령입니다.")
 
-        print("\n🥤 재고 현황 (현재)")
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"{'음료명':<8}{'재고':<6}{'가격':<6}{'매출':<10}")
-        print("───────────────────────────────────────")
-
-        for drink in stock:
-            ICON = "🧊" if stock[drink] > 0 else "❌"
-            name = align_korean(drink, 10)  # 한글 폭 고려
-            print(f"{name}{ICON} {stock[drink]:<6}{price[drink]:<10}{sales[drink]:<10}")
-
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        show_stock_status(stock, price, sales)
 
     # ------------------------------
     # 4️⃣ 프로그램 종료
@@ -166,5 +172,6 @@ with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
 
 print("\n💾 데이터 저장 완료!")
+show_stock_status(stock, price, sales)
 print("📊 최종 매출:", sum(sales.values()), "원")
 print("👋 프로그램을 종료합니다.")
