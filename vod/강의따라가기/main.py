@@ -1,0 +1,11 @@
+"""
+41강 실습 파일
+"""
+
+#oz.py
+
+import oz_module as oz
+
+radius = oz.number_input()
+print(oz.get_circum(radius))
+print(oz.get_circle(radius))
