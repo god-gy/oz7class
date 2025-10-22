@@ -6,22 +6,25 @@
 - amount: 입금 또는 출금 금액을 나타내는 정수
 - choice: 사용자의 선택을 나타내는 문자열
 '''
-from ..models.user import User
-
+from banking_system.models.user import User
 class BankingService:
+    '''서비스'''
     def __init__(self) -> None:
         self.user = []
 
     def add_user(self, username:str) -> None:
+        '''사용자추가'''
         self.user.append(User(username))
 
     def find_user(self, username:str) -> User:
+        '''사용자찾기'''
         for user in self.user:
             if username == self.user:
                 return user
         return None
 
     def user_menu(self, username:str) -> None:
+        '''모드선택'''
         user = self.find_user(username)
 
         while True:

@@ -6,6 +6,8 @@ from typing import Callable
 from functools import wraps  # 메타데이터 보존
 
 def validate_transaction(func: Callable) -> Callable:
+    '''거래내역 데코레이터'''
+
     @wraps(func)  # 원래 함수 정보 유지
     def wrapper(self, amount:int) -> None:
         if amount <= 0:

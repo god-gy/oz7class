@@ -7,7 +7,6 @@
 - balance: 거래 후 잔고를 나타내는 정수
 '''
 
-
 class Transaction:
     ''' 거래내역 '''
     def __init__(self, transaction_type:str, amount:int, balance:int) -> None:
