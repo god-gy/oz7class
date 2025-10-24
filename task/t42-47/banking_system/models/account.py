@@ -26,7 +26,7 @@ class Account:
     def withdraw(self, amount:int) -> None:
         '''금액을 출금하고, 거래 내역에 추가'''
         if amount > self.__balance:
-            raise InsufficientFundsError
+            raise InsufficientFundsError(self.__balance)
         self.__balance -= amount
         self.transaction.append(Transaction("출금", amount, self.__balance))
 
