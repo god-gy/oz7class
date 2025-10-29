@@ -1,0 +1,20 @@
+## MongoDB 비교문법 & 논리연산
+
+### 비교문법 ###
+연산자	        설명	                        예시
+$eq	    값이 지정된 값과 같은 경우	        db.myCollection.find({ age: { $eq: 30 } })
+$gt	    값이 지정된 값보다 큰 경우	        db.myCollection.find({ age: { $gt: 30 } })
+$gte	값이 지정된 값보다 크거나 같은 경우   db.myCollection.find({ age: { $gte: 30 } })
+$lt	    값이 지정된 값보다 작은 경우        db.myCollection.find({ age: { $lt: 30 } })
+$lte	값이 지정된 값보다 작거나 같은 경우   db.myCollection.find({ age: { $lte: 30 } })
+$ne	    값이 지정된 값과 다른 경우          db.myCollection.find({ age: { $ne: 30 } })
+$in	    값이 지정된 배열에 있는 경우        db.myCollection.find({ age: { $in: [30, 35, 40] } })
+$nin	값이 지정된 배열에 없는 경우        db.myCollection.find({ age: { $nin: [30, 35, 40] } })
+
+
+### 논리연산 ###
+연산자	    설명	                            예시
+$and	모든 조건이 참인 문서를 찾음	       db.myCollection.find({ $and: [{ age: { $gt: 20 } }, { age: { $lt: 30 } }] })
+$or	    하나 이상의 조건이 참인 문서를 찾음      db.myCollection.find({ $or: [{ age: 20 }, { name: "Alice" }] })
+$not	조건의 반대에 해당하는 문서를 찾음       db.myCollection.find({ age: { $not: { $gt: 30 } } })
+$nor	주어진 모든 조건이 거짓인 문서를 찾음    db.myCollection.find({ $nor: [{ age: 20 }, { name: "Alice" }] })
