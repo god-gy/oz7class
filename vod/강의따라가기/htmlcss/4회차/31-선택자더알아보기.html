@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>선택자 더 알아보기</title>
+    <style>
+        /*
+            기호와 함께 사용하는 [속성 선택자]
+            * : 값의 포함 여부
+            ^ : 값의 시작 여부
+            $ : 값의 끝 여부
+        */
+        [width *= "2"]{
+            border: 5px dashed red;
+        }
+
+        [alt]{
+            border: 5px dashed blue;
+        }
+
+        body p{
+            color: grey;
+        }
+
+        body em{
+            color: rgb(255, 119, 0);
+        }
+
+        p > mark {
+            background-color: rgb(138, 43, 226, 0.5);
+        }
+
+        .green + p{
+            color: purple;
+        }
+
+        #sam ~ p{
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    <img src="./images/animal.png" width="120" alt="동물">
+    <img src="./images/animal.png" width="120">
+    <img src="./images/animal.png" width="120" id="sam">
+    <h2>정국 - Still With You</h2>
+    <p class="red">날 스치는 그대의 옅은 그 목소리</p>
+    <p class="purple">내 이름을 <mark>한 번만 더</mark> 불러주세요</p>
+    <p class="green">얼어버린 <em>노을</em> 아래 멈춰 서있지만</p>
+    <p>그대 향해 한 걸음씩 걸어갈래요</p>
+    <p>Still With You</p>
+</body>
+</html>
