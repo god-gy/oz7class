@@ -1,0 +1,34 @@
+.chat-screen__texts{
+    padding: 0;
+    list-style-type: none;
+}
+
+.chat-screen__texts > .text{
+    background-color: blanchedalmond;
+    width: 280px;
+    height: 50px;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    line-height: 30px;
+    position: relative;
+    left: 20px;
+}
+
+.chat-screen__texts > .text::after{
+    content: "";
+    border-right: 16px solid blanchedalmond;
+    border-bottom: 16px solid transparent;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+}
+
+.chat-screen__texts > .text:hover{
+    background-color: rgb(204, 187, 162);
+    transition: background-color 1500ms 200ms ease-in;
+}
+.chat-screen__texts > .text:hover::after{
+    border-right: 16px solid rgb(204, 187, 162);
+    transition: border-right 1500ms 200ms ease-in;
+}
