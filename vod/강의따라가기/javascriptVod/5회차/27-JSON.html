@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+
+    <script>
+        const meal = {
+            what: "제육볶음",
+            who: "아내",
+            when: "어제 저녁"
+        }
+
+        console.log(meal)
+        console.log(typeof meal)
+        
+        // JSON 형식 : 자바스크립트 객체 리터럴을 문자열 형식으로 변환한 것.
+        // 위 객체를 JSON 형식으로 작성하면?
+        /*
+        const meal = `{
+            "what": "제육볶음",
+            "who": "아내",
+            "when": "어제 저녁"
+            }`
+            */
+
+        // 객체 -> json 문자열
+        let sm = JSON.stringify(meal)
+        console.log(sm)
+        console.log(typeof sm)
+        
+        // json 문자열 -> 객체
+        let pm = JSON.parse(sm)
+        console.log(pm)
+        console.log(typeof pm)
+    </script>
+</body>
+</html>
