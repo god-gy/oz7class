@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible", content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 메소드 및 속성</title>
+</head>
+<body>
+
+    <h1 id="song-title" class="heading text" title="정국이 솔로">
+        <span>정국 - Still With You</span>
+    </h1>
+    <p class="lyrics">날 스치는 그대의 옅은 그 목소리</p>
+    <p class="lyrics">내 이름을 한 번만 더 불러주세요</p>
+    <p class="lyrics">얼어버린 노을 아래 멈춰 서있지만</p>
+    <p class="lyrics">그대 향해 한 걸음씩 걸어갈래요</p>
+    <p class="lyrics">Still With You</p>
+
+    <script>
+
+        console.log(document.querySelectorAll(".lyrics"))
+        console.log(document.getElementsByClassName("lyrics"))
+        const title = document.getElementById("song-title")
+        console.log(title)
+
+        console.log(title.textContent)
+        console.log(title.innerText)
+        console.log(title.className)
+        console.log(title.style)
+        console.log(title.title)
+
+    </script>
+</body>
+</html>
