@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible", content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체를 만드는 생성자</title>
+</head>
+<body>
+    
+    <script>
+        // 함수인데, 객체를 생성할 목적으로 정의하는 함수. 설계도 개념.
+        // 자바스크립트에서 기본으로 제공하지 않는 데이터 유형을 직접 만들 수 있다.
+
+        // function BestSinger(){
+        //     this.name = "BTS"
+        //     this.member = "김남준, 김석진, 민윤기, 박지민, 김태형, 전정국"
+        //     this.singing = function(){
+        //         console.log("smooth like butter~")
+        //     }
+        // }
+
+        // const bts = new BestSinger()
+        // console.log(bts.name)
+        // console.log(bts.member)
+        // bts.singing()
+        
+        function Singer(name, member){
+            this.name = name
+            this.member = member
+        }
+        
+        const bts = new Singer("BTS","김남준, 김석진, 민윤기, 박지민, 김태형, 전정국")
+        console.log(bts.name)
+        console.log(bts.member)
+
+    </script>
+</body>
+</html>
