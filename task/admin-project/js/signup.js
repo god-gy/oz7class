@@ -44,7 +44,7 @@ function buttonClick() {
     }
 
     alert(`🎉 회원가입이 완료되었습니다!🎉 \n아이디: ${idValue}\n이름: ${nameValue}`)
-    location.href = "mypage.html"
+    location.href = "../html/mypage.html"
 }
 
 button.addEventListener("click", function (e) {
