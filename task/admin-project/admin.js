@@ -1,3 +1,9 @@
+// 값 받아오기
+const input = document.getElementById("search")
+const button = document.getElementById("button")
+const table = document.getElementById("product_data_Table")
+const select = document.getElementById("inlineFormSelectPref")
+
 // 제품 데이터
 const product_data = [
     { category: "상의", brand: 'Supreme', product: '슈프림 박스로고 후드티', price: '390,000' },
@@ -27,25 +33,37 @@ const product_data = [
 const product_data_Table = document.getElementById('product_data_Table');
 
 // 초기 데이터 로딩
-product_data.forEach((item) => {
-const row = product_data_Table.insertRow();
-    row.insertCell(0).innerHTML = item.category;
-    row.insertCell(1).innerHTML = item.brand;
-    row.insertCell(2).innerHTML = item.product;
-    row.insertCell(3).innerHTML = item.price;
-});
-
+displayTable(product_data)
 ////////////////////////////////////////////////
 
-// 값 받아오기
-const input = document.getElementById("search")
-const button = document.getElementById("button")
-const table = document.getElementById("product_data_Table")
+// 테이블 표시 함수
+function displayTable(data) {
+    product_data_Table.innerHTML = "";
+    data.forEach((item) => {
+        const row = product_data_Table.insertRow()
+        row.insertCell(0).innerHTML = item.category
+        row.insertCell(1).innerHTML = item.brand
+        row.insertCell(2).innerHTML = item.product
+        row.insertCell(3).innerHTML = item.price
+    })
+}
 
-
-
-
-// 조회 버튼 클릭시 조회된 정보만 표시하기
-
+// 조회 버튼 클릭 이벤트
+button.addEventListener("click", function(e){
+    e.preventDefault()
+    const keyword = input.value.trim();
+    const filtered = product_data.filter(item =>
+        item.product.includes(keyword)
+    );
+    displayTable(filtered)
+    input.value = ""
+})
 
 // 셀렉트시 셀렉트된 정보만 표시하기
+select.addEventListener("change", function(e){
+    e.preventDefault()
+    const filtered = product_data.filter(item =>
+        item.category.includes(select.value)
+    )
+    displayTable(filtered)
+})
