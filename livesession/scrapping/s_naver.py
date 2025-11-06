@@ -1,0 +1,41 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
+
+keywords = input("검색어를 입력해주세요: ")
+url = f"https://search.naver.com/search.naver?ssc=tab.blog.all&sm=tab_jum&query={keywords}"
+
+options_ = Options()
+options_.add_experimental_option("detach", True)
+
+driver = webdriver.Chrome(options=options_)
+driver.get(url)
+time.sleep(1)
+
+for i in range(5):
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    time.sleep(1)
+#----------------------------------------------------------------------------
+
+html = driver.page_source
+soup = BeautifulSoup(html, "html.parser")
+
+result = soup.select(".sds-comps-vertical-layout.sds-comps-full-layout.IoSVvu2hEbI_In6t6FAw")
+
+for i in result:
+    ad = i.select_one(".vZ_ErVj5n5d07m6XzhoL")
+    if not ad:
+        title = i.select_one(".sds-comps-text.sds-comps-text-ellipsis.sds-comps-text-ellipsis-1.sds-comps-text-type-headline1.sds-comps-text-weight-sm").text
+        writer = i.select_one(".sds-comps-text.sds-comps-text-ellipsis.sds-comps-text-ellipsis-1").text
+        dsc = i.select_one(".sds-comps-text.sds-comps-text-type-body1.sds-comps-text-weight-sm").text
+        link = i.select_one(".ialLiYPc7XEN3dJ4Tujv.pHHExKwXvRWn4fm5O0Hr")["href"]
+
+        print(f"제목 : {title}")
+        print(f"작성자 : {writer}")
+        print(f"내용 : {dsc}")
+        print(f"링크 : {link}")
+        print()
+
+print(len(result))
+driver.quit()
