@@ -3,9 +3,9 @@
 '''
 # category, brand, product, price
 
-from itertools import product
 import time
-import json
+import pymysql
+# import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
@@ -31,8 +31,8 @@ result = soup.select(".zds4_798wu00.medium.medium.padding-on.product-card-metada
 products = []
 
 # 카테고리 자동 분류 함수
-def get_category(product_name):
-    name = product_name.lower()
+def get_category(name):
+    name = product.lower()
     if any(k in name for k in ["후드", "맨투맨", "니트", "티셔츠", "셔츠", "자켓", "코트", "탑", "가디건"]):
         return "상의"
     elif any(k in name for k in ["팬츠", "바지", "슬랙스", "청바지", "스커트", "치마", "트레이닝", "조거"]):
@@ -46,22 +46,43 @@ def get_category(product_name):
 
 # 데이터 수집
 for i in result:
-    brand = i.select_one(".zds4_1kdomr8")
-    product = i.select_one(".zds4_1kdomrc.zds4_1kdomra")
-    price = i.select_one(".zds4_s96ru86.zds4_s96ru81n.zds4_1jsf80i3.zds4_1jsf80i5")
+    brand = i.select_one(".zds4_1kdomr8").text.strip()
+    product = i.select_one(".zds4_1kdomrc.zds4_1kdomra").text.strip()
+    price = i.select_one(".zds4_s96ru86.zds4_s96ru81n.zds4_1jsf80i3.zds4_1jsf80i5").text.strip()
+    category = get_category(product)
 
-    product_name = product.text
-    category = get_category(product_name)
+    # products.append({
+    #     "category": category,
+    #     "brand": brand.text if brand else "",
+    #     "product": product_name,
+    #     "price": price.text if price else "",
+    # })
 
-    products.append({
-        "category": category,
-        "brand": brand.text if brand else "",
-        "product": product_name,
-        "price": price.text if price else "",
-    })
+    product_info = [category, brand, product, price]
+    products.append(product_info)
 
-# 결과 저장
-with open("/Users/admin/StudyClass/oz7class/task/admin-project/crawlling/zigzag_data.json", "w", encoding="utf-8") as f:
-    json.dump(products, f, ensure_ascii=False, indent=2)
+# json에 저장
+# with open("/Users/admin/StudyClass/oz7class/task/admin-project/crawlling/zigzag_data.json", "w", encoding="utf-8") as f:
+#     json.dump(products, f, ensure_ascii=False, indent=2)
 
 driver.quit()
+
+# db에 저장
+connection = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="20241013",
+    db="admin",
+    charset="utf8mb4"
+)
+
+def execute_query(conn, query, args=None):
+    with conn.cursor() as cursor:
+        cursor.execute(query, args or ()) # select * from kream3
+        if query.strip().upper().startswith("SELECT"):
+            return cursor.fetchall()
+        else:
+            conn.commit()
+
+for i in products:
+    execute_query(connection,"INSERT INTO `admin` (category, brand, product, price) VALUES (%s, %s, %s, %s)",(i[0],i[1],i[2],i[3]))
