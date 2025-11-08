@@ -1,5 +1,5 @@
 '''
-    크롤링
+    zigzag 크롤링
 '''
 # category, brand, product, price
 
