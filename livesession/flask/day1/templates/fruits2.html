@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible", content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>과일</title>
+    </head>
+    <body>
+        <!-- practice4.py -->
+
+        <ul>
+            {% for fruit in fruits %}
+                {% if fruit == "딸기" %}
+                    <li> 내사랑 {{ fruit }}</li>
+                {% else %}
+                <li> {{ fruit }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </body>
+</html>
