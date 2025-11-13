@@ -73,6 +73,7 @@ for user in users:
 # 이름이 "건영"인 첫번째 사용자를 검색
 find_user = db.query(User).filter(User.name == "건영").first()
 print("조건 조회: ", find_user)
+
 # 이름에 "BE_"가 포함된 사용자를 검색 (패턴 검색)
 find_users = db.query(User).filter(User.name.like("BE_%")).all()
 print("조건 조회: ", find_users)
@@ -88,11 +89,6 @@ print("업데이트 완료: ", users)
 # 모든 데이터 제거
 db.query(User).delete()
 db.commit()
-print("모든 유저 삭제 끝!!!")
 users = db.query(User).all()
-if users:
-    print("아직 남았어: ", users)
-else:
-    print("데이터 모두 삭제 완료")
 
 db.close()
