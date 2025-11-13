@@ -1,6 +1,7 @@
 ''' flask 선언 및 route 생성 '''
 from flask import Flask, render_template
 from flask_smorest import Api
+from flask_migrate import Migrate
 from db import db
 from models import User, Board
 
@@ -10,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:20241013@localhost
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+migrate = Migrate(app, db)
 
 # bluepring 설정 및 등록
 app.config["API_TITLE"] = "My API"
