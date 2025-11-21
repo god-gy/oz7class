@@ -100,6 +100,25 @@ standard = ["email-validator (>=2.0.0)", "fastapi-cli[standard] (>=0.0.8)", "htt
 standard-no-fastapi-cloud-cli = ["email-validator (>=2.0.0)", "fastapi-cli[standard-no-fastapi-cloud-cli] (>=0.0.8)", "httpx (>=0.23.0,<1.0.0)", "jinja2 (>=3.1.5)", "python-multipart (>=0.0.18)", "uvicorn[standard] (>=0.12.0)"]
 
 [[package]]
+name = "fastapi-jwt"
+version = "0.3.0"
+description = "`FastAPI` extension for JTW Auth"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "fastapi_jwt-0.3.0-py3-none-any.whl", hash = "sha256:b4255ce929f1c59c2bbcf5295b485995c8263466aa733a0dd164b052b4a476a3"},
+]
+
+[package.dependencies]
+fastapi = ">=0.50.0"
+
+[package.extras]
+authlib = ["Authlib (>=1.3.0)"]
+docs = ["MkAutoDoc (>=0.2.0,<1.0.0)", "lazydocs (>=0.4.5,<1.0.0)", "mike (>=1.1.0,<3.0.0)", "mkdocs (>=1.4.0,<2.0.0)", "mkdocs-awesome-pages-plugin (>=2.8.0,<3.0.0)", "mkdocs-include-markdown-plugin (>=4.0.0,<7.0.0)", "mkdocs-material (>=9.0.0,<10.0.0)"]
+python-jose = ["python-jose[cryptography] (>=3.3.0)"]
+test = ["Authlib (>=1.3.0)", "black (==24.4.2)", "flake8 (>=6.0.0,<8.0.0)", "httpx (>=0.23.0,<1.0.0)", "isort (>=5.11.0,<6.0.0)", "mypy (>=1.0.0,<2.0.0)", "pytest (>=7.0.0,<9.0.0)", "pytest-cov (>=4.0.0,<6.0.0)", "pytest-mock (>=3.0.0,<4.0.0)", "python-jose[cryptography] (>=3.3.0)", "requests (>=2.28.0,<3.0.0)", "ruff (>=0.1.0,<1.0.0)", "types-python-jose (==3.3.4.8)"]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -123,6 +142,23 @@ files = [
 
 [package.extras]
 all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2)"]
+
+[[package]]
+name = "passlib"
+version = "1.7.4"
+description = "comprehensive password hashing framework supporting over 30 schemes"
+optional = false
+python-versions = "*"
+files = [
+    {file = "passlib-1.7.4-py2.py3-none-any.whl", hash = "sha256:aa6bca462b8d8bda89c70b382f0c298a20b5560af6cbfa2dce410c0a2fb669f1"},
+    {file = "passlib-1.7.4.tar.gz", hash = "sha256:defd50f72b65c5402ab2c573830a6978e5f202ad0d984793c8dde2c4152ebe04"},
+]
+
+[package.extras]
+argon2 = ["argon2-cffi (>=18.2.0)"]
+bcrypt = ["bcrypt (>=3.1.0)"]
+build-docs = ["cloud-sptheme (>=1.10.1)", "sphinx (>=1.6)", "sphinxcontrib-fulltoc (>=1.2.0)"]
+totp = ["cryptography"]
 
 [[package]]
 name = "pydantic"
@@ -353,4 +389,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.6.3)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "abf3655b5c8aa05cabc88a632e13387559a53481685fe44b690415cb8eef0d31"
+content-hash = "39091e36552ad9b6e944445b8ed3fa39980d5325de1e3f4fc16630800263146a"

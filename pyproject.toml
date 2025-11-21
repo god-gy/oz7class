@@ -11,6 +11,8 @@ pydantic = "^2.12.4"
 annotated = "^0.0.2"
 fastapi = "^0.121.3"
 uvicorn = "^0.38.0"
+passlib = "^1.7.4"
+fastapi-jwt = "^0.3.0"
 
 
 [build-system]
