@@ -4,8 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/task/t42-47/banking_system" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/livesession/eb-fastapi/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (oz7class)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.14 (oz7class)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
